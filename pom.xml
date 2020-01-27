@@ -20,7 +20,7 @@
     <spring.version>5.0.8.RELEASE</spring.version>
     <hibernate.version>4.1.9.Final</hibernate.version>
     <aspectjweaver.version>1.9.2</aspectjweaver.version>
-    <jackson.version>2.9.8</jackson.version>
+    <jackson.version>2.10.2</jackson.version>
   </properties>
 
   <dependencies>
