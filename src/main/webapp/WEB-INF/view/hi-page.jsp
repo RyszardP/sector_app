@@ -7,6 +7,6 @@
 User name: ${param.userName}
 
 <br>
-The message: ${HelloUserNameMesage}
+The message: ${HelloUserNameMessage}
 </body>
 </html>

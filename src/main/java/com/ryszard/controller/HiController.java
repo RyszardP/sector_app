@@ -27,9 +27,11 @@ public class HiController {
 
     @RequestMapping("/processFormVersionTwo")
     public String helloMessage(HttpServletRequest request, Model model) {
-        String theName = request.getParameter("username");
-        String result = "Hello!" + theName;
-        model.addAttribute("HelloUserNameMesage", request);
+        String theName = request.getParameter("userName");
+        String result = "Hello! " + theName;
+        model.addAttribute("HelloUserNameMessage", result);
         return "hi-page";
     }
+
+
 }
