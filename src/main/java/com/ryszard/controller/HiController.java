@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -34,4 +35,11 @@ public class HiController {
     }
 
 
+    @RequestMapping("/processFormVersionThree")
+    public String processFromVersionThree(@RequestParam("userName") String userName, Model model) {
+
+        String result = "Hello My friend v3! " + userName;
+        model.addAttribute("HelloUserNameMessage", result);
+        return "hi-page";
+    }
 }
