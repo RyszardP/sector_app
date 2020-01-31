@@ -1,37 +1,34 @@
 package com.ryszard.domain;
 
+
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-@Entity
-@Table(name="user")
+
 public class User {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="user_id")
     private Long userId;
 
-    @Column(name="user_name")
+    @NotNull(message = "Is required")
+    @Size(min=1)
     private String userName;
 
-    @Column(name="user_surname")
+    @NotNull(message = "Is required")
+    @Size(min=1)
     private String userSurname;
 
-    @Column(name="user_login")
     private String login;
 
-    @Column(name="user_password")
     private String password;
 
-    @Column(name="user_birthday")
     private Timestamp birthDate;
 
-    @Column(name="user_sector_id")
     private Long userSectorId;
 
     public User() {
