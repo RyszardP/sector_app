@@ -1,4 +1,4 @@
-package com.ryszard.domain;
+package com.ryszard.domain.hibernate;
 
 import javax.persistence.*;
 
@@ -14,7 +14,7 @@ public class Sector {
     @Column(name="sector_name")
     private String sectorName;
 
-    @Column(name="sector_factory_id")
+    @Column(name="sector_department_id")
     private Long sector_factory;
 
 

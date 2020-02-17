@@ -1,4 +1,4 @@
-package com.ryszard.domain;
+package com.ryszard.domain.hibernate;
 
 import javax.persistence.*;
 

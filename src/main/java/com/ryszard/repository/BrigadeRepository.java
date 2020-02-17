@@ -1,6 +1,6 @@
 package com.ryszard.repository;
 
-import com.ryszard.domain.Brigade;
+import com.ryszard.domain.hibernate.Brigade;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

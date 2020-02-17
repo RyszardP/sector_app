@@ -1,6 +1,6 @@
 package com.ryszard.controller;
 
-import com.ryszard.domain.Employee;
+import com.ryszard.domain.hibernate.Employee;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

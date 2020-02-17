@@ -1,27 +1,14 @@
-package com.ryszard.domain;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+package com.ryszard.domain.vo;
 
-import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name="brigade")
 public class Brigade {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="brigade_id")
     private Long brigadeId;
 
-    @Column(name="brigade_type")
     private String brigadeType;
 
     public Brigade() {
-    }
-
-    public Brigade(String brigadeType) {
-        this.brigadeType = brigadeType;
     }
 
     public Brigade(Long brigadeId, String brigadeType) {
@@ -61,9 +48,9 @@ public class Brigade {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
+        return "Brigade{" +
+                "brigadeId=" + brigadeId +
+                ", brigadeType='" + brigadeType + '\'' +
+                '}';
     }
-
-
-
 }
