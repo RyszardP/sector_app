@@ -1,8 +1,12 @@
 package com.ryszard.domain.vo;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Employee {
+public class Employee implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Long employeeId;
 
     private Long employeeSectorId;
@@ -10,6 +14,12 @@ public class Employee {
     private String employeePosition;
 
     public Employee() {
+
+    }
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Employee(Long employeeId, Long employeeSectorId, String employeePosition) {

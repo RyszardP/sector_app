@@ -11,13 +11,14 @@ public interface GenericDao<T, K> {
 
     T findById(K id) throws DaoException;
 
-    void delete(K id) throws DaoException;
+    boolean delete(K id) throws DaoException;
 
     T save(T entity) throws DaoException;
 
-    T update(T entity) throws DaoException;
+    Long update(T entity) throws DaoException;
 
     List<T> search(T entity) throws DaoException;
 
+    int create(T entity) throws DaoException;
 
 }

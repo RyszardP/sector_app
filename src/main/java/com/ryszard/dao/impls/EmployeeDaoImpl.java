@@ -24,17 +24,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
             " VALUES (?, ?)";
     private static final String LAST_INSERT_ID = "SELECT last_insert_id() as lastId";
 
-    private static final String EMPLOYEE_SECTOR_ID = "employeeSectorId";
-    private static final String EMPLOYEE_POSITION = "employeePosition";
+    private static final String EMPLOYEE_SECTOR_ID = "employeeSector_id";
+    private static final String EMPLOYEE_POSITION = "employee_position";
+    private static final String EMPLOYEE_ID = "employee_id";
+    private static final String LAST_ID_ATTRIBUTE = "lastId";
 
     private static final ConnectionPool pool = ConnectionPool.getInstance();
 
-    public EmployeeDaoImpl() {
+    private EmployeeDaoImpl() {
     }
 
 
     private static class SingletonHolder {
         private static final EmployeeDao instance = new EmployeeDaoImpl();
+    }
+
+    public static EmployeeDao getInstance() {
+        return SingletonHolder.instance;
     }
 
     @Override
@@ -56,13 +62,52 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Employee findById(Long id) {
-        return null;
+    public Employee findById(Integer id) throws DaoException {
+        try (Connection connect = pool.getConnection();
+             PreparedStatement statement = connect.prepareStatement(SELECT_BY_ID)) {
+            statement.setInt(1, Math.toIntExact(id));
+            ResultSet set = statement.executeQuery();
+
+            if (set.next()) {
+                Employee employee = new Employee();
+                employee.setEmployeeId(set.getLong(EMPLOYEE_ID));
+                employee.setEmployeeSectorId(Long.valueOf(set.getString(EMPLOYEE_SECTOR_ID)));
+                employee.setEmployeePosition(set.getString(EMPLOYEE_POSITION));
+                return employee;
+            } else {
+                return null;
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("id Exception", e);
+        }
     }
 
     @Override
-    public void delete(Long id) {
+    public boolean delete(Integer id) throws DaoException  {
+        try (Connection connect = pool.getConnection();
+             PreparedStatement statement = connect.prepareStatement(DELETE_BY_ID)) {
+            statement.setLong(1, id);
+            return true;
+        } catch (SQLException | ConnectionPoolException e) {
+            e.printStackTrace();
+            throw new DaoException("Exception! ", e);
+        }
+    }
 
+    @Override
+    public int create(Employee entity) throws DaoException {
+        try(Connection connect = pool.getConnection();
+            PreparedStatement statement = connect.prepareStatement(CREATE_EMPLOYEE);
+            PreparedStatement statementTwo = connect.prepareStatement(LAST_INSERT_ID)) {
+            statement.setString(1, String.valueOf(entity.getEmployeeSectorId()));
+            statement.setString(2,entity.getEmployeePosition());
+            statement.executeUpdate();
+            ResultSet set = statementTwo.executeQuery();
+            set.next();
+            return set.getInt(LAST_ID_ATTRIBUTE);
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Exception", e);
+        }
     }
 
     @Override
@@ -71,12 +116,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Employee update(Employee entity) {
-        return null;
+    public Long update(Employee entity) throws DaoException {
+        try (Connection connect = pool.getConnection();
+             PreparedStatement statement = connect.prepareStatement(UPDATE_EMPLOYEE)) {
+            statement.setString(1, String.valueOf(entity.getEmployeeSectorId()));
+            statement.setString(2,entity.getEmployeePosition());
+            int rows = statement.executeUpdate();
+            return 0L;
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DaoException("Exception", e);
+        }
     }
+
 
     @Override
     public List<Employee> search(Employee entity) {
         return null;
     }
+
+
 }
