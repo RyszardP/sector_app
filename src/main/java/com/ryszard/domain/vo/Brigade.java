@@ -4,23 +4,24 @@ import java.util.Objects;
 
 public class Brigade {
 
-    private Long brigadeId;
+    private int brigadeId;
 
     private String brigadeType;
 
     public Brigade() {
     }
 
-    public Brigade(Long brigadeId, String brigadeType) {
+
+    public Brigade(int brigadeId, String brigadeType) {
         this.brigadeId = brigadeId;
         this.brigadeType = brigadeType;
     }
 
-    public Long getBrigadeId() {
+    public int getBrigadeId() {
         return brigadeId;
     }
 
-    public void setBrigadeId(Long brigadeId) {
+    public void setBrigadeId(int brigadeId) {
         this.brigadeId = brigadeId;
     }
 

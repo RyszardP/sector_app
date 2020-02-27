@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Fault {
 
-    private Long faultId;
+    private int faultId;
 
     private String type;
 
@@ -20,8 +20,7 @@ public class Fault {
     public Fault() {
     }
 
-    public Fault(Long faultId, String type, Timestamp faultDate, Timestamp faultFinish, Long faultSectorId,
-                 Long faultBrigadeId) {
+    public Fault(int faultId, String type, Timestamp faultDate, Timestamp faultFinish, Long faultSectorId, Long faultBrigadeId) {
         this.faultId = faultId;
         this.type = type;
         this.faultDate = faultDate;
@@ -30,11 +29,11 @@ public class Fault {
         this.faultBrigadeId = faultBrigadeId;
     }
 
-    public Long getFaultId() {
+    public int getFaultId() {
         return faultId;
     }
 
-    public void setFaultId(Long faultId) {
+    public void setFaultId(int faultId) {
         this.faultId = faultId;
     }
 

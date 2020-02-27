@@ -5,11 +5,11 @@ import java.util.Objects;
 
 public class BrigadeEmployee {
 
-    private Long brigadeEmployeeId;
+    private int brigadeEmployeeId;
 
-    private Long employeeId;
+    private int employeeId;
 
-    private Long brigadeId;
+    private int brigadeId;
 
     private Timestamp start;
 
@@ -18,7 +18,7 @@ public class BrigadeEmployee {
     public BrigadeEmployee() {
     }
 
-    public BrigadeEmployee(Long brigadeEmployeeId, Long employeeId, Long brigadeId, Timestamp start, Timestamp finish) {
+    public BrigadeEmployee(int brigadeEmployeeId, int employeeId, int brigadeId, Timestamp start, Timestamp finish) {
         this.brigadeEmployeeId = brigadeEmployeeId;
         this.employeeId = employeeId;
         this.brigadeId = brigadeId;
@@ -26,27 +26,15 @@ public class BrigadeEmployee {
         this.finish = finish;
     }
 
-    public Long getBrigadeEmployeeId() {
-        return brigadeEmployeeId;
-    }
-
-    public void setBrigadeEmployeeId(Long brigadeEmployeeId) {
+    public void setBrigadeEmployeeId(int brigadeEmployeeId) {
         this.brigadeEmployeeId = brigadeEmployeeId;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Long getBrigadeId() {
-        return brigadeId;
-    }
-
-    public void setBrigadeId(Long brigadeId) {
+    public void setBrigadeId(int brigadeId) {
         this.brigadeId = brigadeId;
     }
 

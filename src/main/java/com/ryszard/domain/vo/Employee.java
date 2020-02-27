@@ -7,9 +7,9 @@ public class Employee implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long employeeId;
+    private int employeeId;
 
-    private Long employeeSectorId;
+    private int employeeSectorId;
 
     private String employeePosition;
 
@@ -17,30 +17,29 @@ public class Employee implements Serializable {
 
     }
 
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public Employee(Long employeeId, Long employeeSectorId, String employeePosition) {
+    public Employee(int employeeId, int employeeSectorId, String employeePosition) {
         this.employeeId = employeeId;
         this.employeeSectorId = employeeSectorId;
         this.employeePosition = employeePosition;
     }
 
-    public Long getEmployeeId() {
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public int getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
 
-    public Long getEmployeeSectorId() {
+    public int getEmployeeSectorId() {
         return employeeSectorId;
     }
 
-    public void setEmployeeSectorId(Long employeeSectorId) {
+    public void setEmployeeSectorId(int employeeSectorId) {
         this.employeeSectorId = employeeSectorId;
     }
 
@@ -57,22 +56,13 @@ public class Employee implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(employeeId, employee.employeeId) &&
-                Objects.equals(employeeSectorId, employee.employeeSectorId) &&
+        return employeeId == employee.employeeId &&
+                employeeSectorId == employee.employeeSectorId &&
                 Objects.equals(employeePosition, employee.employeePosition);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(employeeId, employeeSectorId, employeePosition);
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeId=" + employeeId +
-                ", employeeSectorId=" + employeeSectorId +
-                ", employeePosition='" + employeePosition + '\'' +
-                '}';
     }
 }

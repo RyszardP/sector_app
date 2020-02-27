@@ -3,7 +3,7 @@ package com.ryszard.domain.vo;
 import java.util.Objects;
 
 public class Sector {
-    private Long sectorId;
+    private int sectorId;
 
     private String sectorName;
 
@@ -12,17 +12,17 @@ public class Sector {
     public Sector() {
     }
 
-    public Sector(Long sectorId, String sectorName, String sectorDepartmentId) {
+    public Sector(int sectorId, String sectorName, String sectorDepartmentId) {
         this.sectorId = sectorId;
         this.sectorName = sectorName;
         this.sectorDepartmentId = sectorDepartmentId;
     }
 
-    public Long getSectorId() {
+    public int getSectorId() {
         return sectorId;
     }
 
-    public void setSectorId(Long sectorId) {
+    public void setSectorId(int sectorId) {
         this.sectorId = sectorId;
     }
 
