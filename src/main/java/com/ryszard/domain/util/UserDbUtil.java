@@ -30,10 +30,10 @@ public class UserDbUtil implements ConnectionClose {
                 int userId = myResultSet.getInt("user_id");
                 String userName = myResultSet.getString("user_name");
                 String userSurname = myResultSet.getString("user_surname");
-                String userLogin = myResultSet.getString("user_login");
-                String userPassword = myResultSet.getString("user_password");
-                Timestamp userBirthday = Timestamp.valueOf(myResultSet.getString("user_birthday"));
-                User tempUser = new User(userId, userName, userSurname, userLogin, userPassword, userBirthday);
+                String login = myResultSet.getString("user_login");
+                String password = myResultSet.getString("user_password");
+                Timestamp userBirthDate = Timestamp.valueOf(myResultSet.getString("user_birthday"));
+                User tempUser = new User(userId, userName, userSurname, login, password, userBirthDate);
                 users.add(tempUser);
             }
             return users;
@@ -95,11 +95,12 @@ public class UserDbUtil implements ConnectionClose {
             myPreparedStatement.setInt(1, userId);
             myResultSet = myPreparedStatement.executeQuery();
             if (myResultSet.next()) {
-                String userName = myResultSet.getString("userName");
-                String userSurname = myResultSet.getString("UserSurname");
+                String userName = myResultSet.getString("user_name");
+                String userSurname = myResultSet.getString("user_surname");
                 String userLogin = myResultSet.getString("user_login");
                 String userPassword = myResultSet.getString("user_password");
                 Timestamp userBirthday = Timestamp.valueOf(myResultSet.getString("user_birthday"));
+                theUser = new User(userId, userName, userSurname, userLogin, userPassword, userBirthday);
             } else {
                 throw new Exception("Could not find user id: " + userId);
             }

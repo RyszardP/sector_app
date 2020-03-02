@@ -21,7 +21,7 @@ public class UserControllerServlet extends HttpServlet {
 
     private UserDbUtil userDbUtil;
 
-    @Resource(name = "jdbc/web_user_tracker")
+    @Resource(name = "jdbc/factory_data")
     private DataSource dataSource;
 
     @Override
@@ -71,6 +71,7 @@ public class UserControllerServlet extends HttpServlet {
         }
 
     }
+
     private void deleteUser(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         String theUserId = request.getParameter("userId");
@@ -83,10 +84,10 @@ public class UserControllerServlet extends HttpServlet {
         int userId = Integer.parseInt(request.getParameter("userId"));
         String userName = request.getParameter("userName");
         String userSurname = request.getParameter("userSurname");
-        String userLogin = request.getParameter("userLogin");
-        String userPassword = request.getParameter("userPassword");
-        Timestamp userBirthday = Timestamp.valueOf(request.getParameter("userPassword"));
-        User theUser = new User(userId, userName, userSurname, userLogin,userPassword,userBirthday);
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        Timestamp birthDate = Timestamp.valueOf(request.getParameter("birthDate"));
+        User theUser = new User(userId, userName, userSurname, login, password, birthDate);
         userDbUtil.updateUser(theUser);
         listUsers(request, response);
 
@@ -94,12 +95,12 @@ public class UserControllerServlet extends HttpServlet {
 
     private void loadUser(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        String theUserId = request.getParameter("studentId");
+        String theUserId = request.getParameter("userId");
         User theUser = userDbUtil.getUser(theUserId);
         request.setAttribute("THE_USER", theUser);
 
-          RequestDispatcher dispatcher =
-           request.getRequestDispatcher("/update-user-form.jsp");
+        RequestDispatcher dispatcher =
+                request.getRequestDispatcher("/update-user-form.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -109,7 +110,7 @@ public class UserControllerServlet extends HttpServlet {
         String userLogin = request.getParameter("userLogin");
         String userPassword = request.getParameter("userPassword");
         Timestamp userBirthday = Timestamp.valueOf(request.getParameter("userBirthday"));
-        User theUser = new User(userName, userSurname, userLogin,userPassword,userBirthday);
+        User theUser = new User(userName, userSurname, userLogin, userPassword, userBirthday);
         userDbUtil.addUser(theUser);
         listUsers(request, response);
     }

@@ -7,13 +7,18 @@ public class Sector {
 
     private String sectorName;
 
-    private String sectorDepartmentId;
+    private int sectorDepartmentId;
 
     public Sector() {
     }
 
-    public Sector(int sectorId, String sectorName, String sectorDepartmentId) {
+    public Sector(int sectorId, String sectorName,int sectorDepartmentId) {
         this.sectorId = sectorId;
+        this.sectorName = sectorName;
+        this.sectorDepartmentId = sectorDepartmentId;
+    }
+
+    public Sector(String sectorName, int sectorDepartmentId) {
         this.sectorName = sectorName;
         this.sectorDepartmentId = sectorDepartmentId;
     }
@@ -34,11 +39,11 @@ public class Sector {
         this.sectorName = sectorName;
     }
 
-    public String getSectorDepartmentId() {
+    public int getSectorDepartmentId() {
         return sectorDepartmentId;
     }
 
-    public void setSectorDepartmentId(String sectorDepartmentId) {
+    public void setSectorDepartmentId(int sectorDepartmentId) {
         this.sectorDepartmentId = sectorDepartmentId;
     }
 
