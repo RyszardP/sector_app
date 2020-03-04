@@ -107,10 +107,10 @@ public class UserControllerServlet extends HttpServlet {
     private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String userName = request.getParameter("userName");
         String userSurname = request.getParameter("userSurname");
-        String userLogin = request.getParameter("userLogin");
-        String userPassword = request.getParameter("userPassword");
-        Timestamp userBirthday = Timestamp.valueOf(request.getParameter("userBirthday"));
-        User theUser = new User(userName, userSurname, userLogin, userPassword, userBirthday);
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        Timestamp birthDate = Timestamp.valueOf(request.getParameter("birthDate"));
+        User theUser = new User(userName, userSurname,login, password, birthDate);
         userDbUtil.addUser(theUser);
         listUsers(request, response);
     }

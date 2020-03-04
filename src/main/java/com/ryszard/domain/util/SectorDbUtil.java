@@ -18,7 +18,7 @@ public class SectorDbUtil implements ConnectionClose {
         dataSource = theDataSource;
     }
 
-    public List<Sector> getStudents() throws Exception {
+    public List<Sector> getSectors() throws Exception {
 
         List<Sector> sectors = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class SectorDbUtil implements ConnectionClose {
             myResultSet = myStatement.executeQuery(sql);
             while (myResultSet.next()) {
                 int sectorId = myResultSet.getInt("sector_id");
-                String sectorName = myResultSet.getString("first_name");
+                String sectorName = myResultSet.getString("sector_name");
                 int sectorDepartmentId = myResultSet.getInt("sector_department_id");
                 Sector tempSector = new Sector(sectorId, sectorName, sectorDepartmentId);
                 sectors.add(tempSector);
@@ -100,7 +100,7 @@ public class SectorDbUtil implements ConnectionClose {
                 int sectorDepartmentId = myResultSet.getInt("sector_department_id");
                 theSector = new Sector(sectorId, sectorName, sectorDepartmentId);
             } else {
-                throw new Exception("Could not find student id: " + sectorId);
+                throw new Exception("Could not find sector id: " + sectorId);
             }
             return theSector;
         } finally {

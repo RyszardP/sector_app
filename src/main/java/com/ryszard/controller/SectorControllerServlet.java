@@ -91,7 +91,7 @@ public class SectorControllerServlet extends HttpServlet {
             throws Exception {
         String theSectorId = request.getParameter("sectorId");
         Sector theSector = sectorDbUtil.getSector(theSectorId);
-        request.setAttribute("THE_STUDENT", theSector);
+        request.setAttribute("THE_SECTOR", theSector);
 
         RequestDispatcher dispatcher =
                 request.getRequestDispatcher("/update-sector-form.jsp");
@@ -110,7 +110,7 @@ public class SectorControllerServlet extends HttpServlet {
 
     private void listSectors(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        List<Sector> sectors = sectorDbUtil.getStudents();
+        List<Sector> sectors = sectorDbUtil.getSectors();
         request.setAttribute("SECTOR_LIST", sectors);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/list-sectors.jsp");
         dispatcher.forward(request, response);

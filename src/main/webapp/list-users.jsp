@@ -36,13 +36,13 @@
 
             <c:forEach var="tempUser" items="${USER_LIST}">
 
-                <!-- set up a link for each student -->
+                <!-- set up a link for each user -->
                 <c:url var="tempLink" value="UserControllerServlet">
                     <c:param name="command" value="LOAD" />
                     <c:param name="userId" value="${tempUser.userId}" />
                 </c:url>
 
-                <!--  set up a link to delete a student -->
+                <!--  set up a link to delete a user -->
                 <c:url var="deleteLink" value="UserControllerServlet">
                     <c:param name="command" value="DELETE" />
                     <c:param name="userId" value="${tempUser.userId}" />
