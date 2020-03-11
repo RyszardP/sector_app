@@ -29,9 +29,12 @@
             <tr>
                 <th>Sector name</th>
                 <th>Sector department id</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
 
             <c:forEach var="tempSector" items="${SECTOR_LIST}">
+
 
                 <!-- set up a link for each sector -->
                 <c:url var="tempLink" value="SectorControllerServlet">
@@ -52,7 +55,8 @@
 
                     <td>
                         <a href="${tempLink}">Update</a>
-                        |
+                    </td>
+                    <td>
                         <a href="${deleteLink}"
                            onclick="if (!(confirm('Are you sure you want to delete this sector?'))) return false">
                             Delete</a>

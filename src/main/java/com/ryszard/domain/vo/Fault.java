@@ -7,22 +7,30 @@ public class Fault {
 
     private int faultId;
 
-    private String type;
+    private String faultType;
 
     private Timestamp faultDate;
 
     private Timestamp faultFinish;
 
-    private Long faultSectorId;
+    private int faultSectorId;
 
-    private Long faultBrigadeId;
+    private int faultBrigadeId;
 
     public Fault() {
     }
 
-    public Fault(int faultId, String type, Timestamp faultDate, Timestamp faultFinish, Long faultSectorId, Long faultBrigadeId) {
+    public Fault(int faultId, String type, Timestamp faultDate, Timestamp faultFinish, int faultSectorId, int faultBrigadeId) {
         this.faultId = faultId;
-        this.type = type;
+        this.faultType = faultType;
+        this.faultDate = faultDate;
+        this.faultFinish = faultFinish;
+        this.faultSectorId = faultSectorId;
+        this.faultBrigadeId = faultBrigadeId;
+    }
+
+    public Fault(String faultType, Timestamp faultDate, Timestamp faultFinish, int faultSectorId, int faultBrigadeId) {
+        this.faultType = faultType;
         this.faultDate = faultDate;
         this.faultFinish = faultFinish;
         this.faultSectorId = faultSectorId;
@@ -37,12 +45,12 @@ public class Fault {
         this.faultId = faultId;
     }
 
-    public String getType() {
-        return type;
+    public String getFaultType() {
+        return faultType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setFaultType(String faultType) {
+        this.faultType = faultType;
     }
 
     public Timestamp getFaultDate() {
@@ -61,19 +69,19 @@ public class Fault {
         this.faultFinish = faultFinish;
     }
 
-    public Long getFaultSectorId() {
+    public int getFaultSectorId() {
         return faultSectorId;
     }
 
-    public void setFaultSectorId(Long faultSectorId) {
+    public void setFaultSectorId(int faultSectorId) {
         this.faultSectorId = faultSectorId;
     }
 
-    public Long getFaultBrigadeId() {
+    public int getFaultBrigadeId() {
         return faultBrigadeId;
     }
 
-    public void setFaultBrigadeId(Long faultBrigadeId) {
+    public void setFaultBrigadeId(int faultBrigadeId) {
         this.faultBrigadeId = faultBrigadeId;
     }
 
@@ -82,24 +90,24 @@ public class Fault {
         if (this == o) return true;
         if (!(o instanceof Fault)) return false;
         Fault fault = (Fault) o;
-        return Objects.equals(faultId, fault.faultId) &&
-                Objects.equals(type, fault.type) &&
+        return faultId == fault.faultId &&
+                faultSectorId == fault.faultSectorId &&
+                faultBrigadeId == fault.faultBrigadeId &&
+                Objects.equals(faultType, fault.faultType) &&
                 Objects.equals(faultDate, fault.faultDate) &&
-                Objects.equals(faultFinish, fault.faultFinish) &&
-                Objects.equals(faultSectorId, fault.faultSectorId) &&
-                Objects.equals(faultBrigadeId, fault.faultBrigadeId);
+                Objects.equals(faultFinish, fault.faultFinish);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(faultId, type, faultDate, faultFinish, faultSectorId, faultBrigadeId);
+        return Objects.hash(faultId, faultType, faultDate, faultFinish, faultSectorId, faultBrigadeId);
     }
 
     @Override
     public String toString() {
         return "Fault{" +
                 "faultId=" + faultId +
-                ", type='" + type + '\'' +
+                ", faultType='" + faultType + '\'' +
                 ", faultDate=" + faultDate +
                 ", faultFinish=" + faultFinish +
                 ", faultSectorId=" + faultSectorId +
