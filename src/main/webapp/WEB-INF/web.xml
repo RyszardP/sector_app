@@ -5,7 +5,7 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
     <display-name>sector-app</display-name>
     <welcome-file-list>
-        <welcome-file>SectorControllerServlet</welcome-file>
+        <welcome-file>UserControllerServlet</welcome-file>
 
     </welcome-file-list>
 </web-app>

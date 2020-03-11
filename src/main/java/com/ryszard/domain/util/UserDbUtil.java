@@ -4,12 +4,15 @@ import com.ryszard.domain.vo.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDbUtil implements ConnectionClose {
 
     private DataSource dataSource;
+
+   // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public UserDbUtil(DataSource theDataSource) {
         dataSource = theDataSource;

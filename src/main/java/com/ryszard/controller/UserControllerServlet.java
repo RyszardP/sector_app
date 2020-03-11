@@ -2,7 +2,6 @@ package com.ryszard.controller;
 
 import com.ryszard.domain.util.UserDbUtil;
 import com.ryszard.domain.vo.User;
-
 import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

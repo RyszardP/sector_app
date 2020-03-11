@@ -77,7 +77,6 @@ public class SectorControllerServlet extends HttpServlet {
 
     private void updateSector(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         int sectorId = Integer.parseInt(request.getParameter("sectorId"));
         String sectorName = request.getParameter("sectorName");
         int sectorDepartmentId = Integer.parseInt(request.getParameter("sectorDepartmentId"));
@@ -97,6 +96,8 @@ public class SectorControllerServlet extends HttpServlet {
                 request.getRequestDispatcher("/update-sector-form.jsp");
         dispatcher.forward(request, response);
     }
+
+
 
     private void addSector(HttpServletRequest request, HttpServletResponse response) throws Exception {
 

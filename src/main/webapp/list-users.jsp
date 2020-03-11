@@ -32,36 +32,39 @@
                 <th>User login</th>
                 <th>User password</th>
                 <th>User birthday</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
 
             <c:forEach var="tempUser" items="${USER_LIST}">
 
                 <!-- set up a link for each user -->
                 <c:url var="tempLink" value="UserControllerServlet">
-                    <c:param name="command" value="LOAD" />
-                    <c:param name="userId" value="${tempUser.userId}" />
+                    <c:param name="command" value="LOAD"/>
+                    <c:param name="userId" value="${tempUser.userId}"/>
                 </c:url>
 
-                <!--  set up a link to delete a user -->
+                <!-- set up a link to delete a user -->
                 <c:url var="deleteLink" value="UserControllerServlet">
-                    <c:param name="command" value="DELETE" />
-                    <c:param name="userId" value="${tempUser.userId}" />
+                    <c:param name="command" value="DELETE"/>
+                    <c:param name="userId" value="${tempUser.userId}"/>
                 </c:url>
 
-                <tr>
-                    <td> ${tempUser.userName} </td>
-                    <td> ${tempUser.userSurname} </td>
-                    <td> ${tempUser.login} </td>
-                    <td> ${tempUser.password} </td>
-                    <td> ${tempUser.birthDate} </td>
 
-                    <td>
-                        <a href="${tempLink}">Update</a>
-                        |
-                        <a href="${deleteLink}"
-                           onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">
-                            Delete</a>
-                    </td>
+                <td> ${tempUser.userName} </td>
+                <td> ${tempUser.userSurname} </td>
+                <td> ${tempUser.login} </td>
+                <td> ${tempUser.password} </td>
+                <td> ${tempUser.birthDate} </td>
+
+                <td>
+                    <a href="${tempLink}">Update</a></td>
+                |
+                <td>
+                    <a href="${deleteLink}"
+                       onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">
+                        Delete</a>
+                </td>
                 </tr>
 
             </c:forEach>
