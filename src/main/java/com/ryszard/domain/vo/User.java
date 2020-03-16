@@ -1,9 +1,13 @@
 package com.ryszard.domain.vo;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class User {
+
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     private int userId;
 
@@ -15,12 +19,12 @@ public class User {
 
     private String password;
 
-    private Timestamp birthDate;
+    private Date birthDate;
 
     public User() {
     }
 
-    public User(String userName, String userSurname, String login, String password, Timestamp birthDate) {
+    public User(String userName, String userSurname, String login, String password, Date birthDate) {
         this.userName = userName;
         this.userSurname = userSurname;
         this.login = login;
@@ -28,7 +32,7 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public User(int userId, String userName, String userSurname, String login, String password, Timestamp birthDate) {
+    public User(int userId, String userName, String userSurname, String login, String password, Date birthDate) {
         this.userId = userId;
         this.userName = userName;
         this.userSurname = userSurname;
@@ -77,12 +81,23 @@ public class User {
         this.password = password;
     }
 
-    public Timestamp getBirthDate() {
-        return birthDate;
+    public String getBirthDate() {
+        String str = "";
+        if (this.birthDate != null) {
+            str = new SimpleDateFormat("yyyy-MM-dd").format(this.birthDate);
+        }
+        return str;
     }
 
-    public void setBirthDate(Timestamp birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(String birthDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(birthDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.birthDate = formatDate;
     }
 
 

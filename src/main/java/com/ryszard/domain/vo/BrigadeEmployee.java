@@ -1,6 +1,8 @@
 package com.ryszard.domain.vo;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 public class BrigadeEmployee {
@@ -11,15 +13,22 @@ public class BrigadeEmployee {
 
     private int brigadeId;
 
-    private Timestamp start;
+    private Date start;
 
-    private Timestamp finish;
+    private Date finish;
 
     public BrigadeEmployee() {
     }
 
-    public BrigadeEmployee(int brigadeEmployeeId, int employeeId, int brigadeId, Timestamp start, Timestamp finish) {
+    public BrigadeEmployee(int brigadeEmployeeId, int employeeId, int brigadeId, Date start, Date finish) {
         this.brigadeEmployeeId = brigadeEmployeeId;
+        this.employeeId = employeeId;
+        this.brigadeId = brigadeId;
+        this.start = start;
+        this.finish = finish;
+    }
+
+    public BrigadeEmployee(int employeeId, int brigadeId, Date start, Date finish) {
         this.employeeId = employeeId;
         this.brigadeId = brigadeId;
         this.start = start;
@@ -38,20 +47,42 @@ public class BrigadeEmployee {
         this.brigadeId = brigadeId;
     }
 
-    public Timestamp getStart() {
-        return start;
+    public String getStart() {
+        String str = "";
+        if (this.start != null) {
+            str = new SimpleDateFormat("yyyy-MM-dd").format(this.start);
+        }
+        return str;
     }
 
-    public void setStart(Timestamp start) {
-        this.start = start;
+    public void setStart(String start) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(start);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.start = formatDate;
     }
 
-    public Timestamp getFinish() {
-        return finish;
+    public String getFinish() {
+        String str = "";
+        if (this.finish != null) {
+            str = new SimpleDateFormat("yyyy-MM-dd").format(this.finish);
+        }
+        return str;
     }
 
-    public void setFinish(Timestamp finish) {
-        this.finish = finish;
+    public void setFinish(String finish) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(finish);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.finish = formatDate;
     }
 
     @Override

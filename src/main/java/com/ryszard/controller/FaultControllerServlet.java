@@ -36,7 +36,7 @@ public class FaultControllerServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
         try {
 
@@ -49,27 +49,21 @@ public class FaultControllerServlet extends HttpServlet {
                 case "LIST":
                     listFaults(request, response);
                     break;
-
                 case "ADD":
                     addFault(request, response);
                     break;
-
                 case "LOAD":
                     loadFault(request, response);
                     break;
-
                 case "UPDATE":
                     updateFault(request, response);
                     break;
-
                 case "DELETE":
                     deleteFault(request, response);
                     break;
-
                 default:
                     listFaults(request, response);
             }
-
         } catch (Exception exc) {
             throw new ServletException(exc);
         }
@@ -78,7 +72,6 @@ public class FaultControllerServlet extends HttpServlet {
 
     private void deleteFault(HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-
         String theFaultId = request.getParameter("faultId");
         faultDbUtil.deleteFault(theFaultId);
         listFaults(request, response);

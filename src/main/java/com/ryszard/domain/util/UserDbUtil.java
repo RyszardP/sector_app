@@ -6,13 +6,14 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserDbUtil implements ConnectionClose {
 
     private DataSource dataSource;
 
-   // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    // SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     public UserDbUtil(DataSource theDataSource) {
         dataSource = theDataSource;
@@ -35,8 +36,8 @@ public class UserDbUtil implements ConnectionClose {
                 String userSurname = myResultSet.getString("user_surname");
                 String login = myResultSet.getString("user_login");
                 String password = myResultSet.getString("user_password");
-                Timestamp userBirthDate = Timestamp.valueOf(myResultSet.getString("user_birthday"));
-                User tempUser = new User(userId, userName, userSurname, login, password, userBirthDate);
+                Date userBirthDay = myResultSet.getDate("user_birthday");
+                User tempUser = new User(userId, userName, userSurname, login, password, userBirthDay);
                 users.add(tempUser);
             }
             return users;
@@ -76,7 +77,7 @@ public class UserDbUtil implements ConnectionClose {
             myPreparedStatement.setString(2, theUser.getUserSurname());
             myPreparedStatement.setString(3, theUser.getLogin());
             myPreparedStatement.setString(4, theUser.getPassword());
-            myPreparedStatement.setString(5, String.valueOf(theUser.getBirthDate()));
+            myPreparedStatement.setString(5, theUser.getBirthDate());
             myPreparedStatement.execute();
         } finally {
             close(myConnection, myPreparedStatement, null);
@@ -102,8 +103,8 @@ public class UserDbUtil implements ConnectionClose {
                 String userSurname = myResultSet.getString("user_surname");
                 String userLogin = myResultSet.getString("user_login");
                 String userPassword = myResultSet.getString("user_password");
-                Timestamp userBirthday = Timestamp.valueOf(myResultSet.getString("user_birthday"));
-                theUser = new User(userId, userName, userSurname, userLogin, userPassword, userBirthday);
+                Date userBirthDay = myResultSet.getDate("user_birthday");
+                theUser = new User(userId, userName, userSurname, userLogin, userPassword, userBirthDay);
             } else {
                 throw new Exception("Could not find user id: " + userId);
             }
@@ -128,7 +129,7 @@ public class UserDbUtil implements ConnectionClose {
             myPreparedStatement.setString(2, theUser.getUserSurname());
             myPreparedStatement.setString(3, theUser.getLogin());
             myPreparedStatement.setString(4, theUser.getPassword());
-            myPreparedStatement.setString(5, String.valueOf(theUser.getBirthDate()));
+            myPreparedStatement.setDate(5, java.sql.Date.valueOf(theUser.getBirthDate()));
             myPreparedStatement.setInt(6, theUser.getUserId());
             myPreparedStatement.execute();
         } finally {

@@ -59,7 +59,7 @@
 
                 <td>
                     <a href="${tempLink}">Update</a></td>
-                |
+
                 <td>
                     <a href="${deleteLink}"
                        onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">

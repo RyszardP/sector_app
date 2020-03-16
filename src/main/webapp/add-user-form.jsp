@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Add Sector</title>
+	<title>Add user</title>
 
 	<link type="text/css" rel="stylesheet" href="css/style.css">
 	<link type="text/css" rel="stylesheet" href="css/add-user-style.css">
@@ -11,7 +11,7 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-			<h2>FooBar University</h2>
+			<h2>Sector App</h2>
 		</div>
 	</div>
 	

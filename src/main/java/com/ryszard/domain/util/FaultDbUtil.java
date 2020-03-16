@@ -5,6 +5,7 @@ import com.ryszard.domain.vo.Fault;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class FaultDbUtil implements ConnectionClose {
@@ -31,8 +32,8 @@ public class FaultDbUtil implements ConnectionClose {
             while (myResultSet.next()) {
                 int faultId = myResultSet.getInt("fault_id");
                 String faultType = myResultSet.getString("fault_type");
-                Timestamp faultDate = Timestamp.valueOf(myResultSet.getString("fault_date"));
-                Timestamp faultFinish = Timestamp.valueOf(myResultSet.getString("fault_finish"));
+                Date faultDate = myResultSet.getDate("fault_date");
+                Date faultFinish = myResultSet.getDate("fault_finish");
                 int faultSectorId = myResultSet.getInt("fault_sector_id");
                 int faultBrigadeId = myResultSet.getInt("fault_brigade_id");
 
@@ -78,8 +79,8 @@ public class FaultDbUtil implements ConnectionClose {
 
             myStatement = myConnection.prepareStatement(sql);
             myStatement.setString(1, theFault.getFaultType());
-            myStatement.setString(2, String.valueOf(theFault.getFaultDate()));
-            myStatement.setString(3, String.valueOf(theFault.getFaultFinish()));
+            myStatement.setString(2, theFault.getFaultDate());
+            myStatement.setString(3, theFault.getFaultFinish());
             myStatement.setInt(4, theFault.getFaultSectorId());
             myStatement.setInt(5, theFault.getFaultBrigadeId());
             myStatement.execute();
@@ -100,14 +101,14 @@ public class FaultDbUtil implements ConnectionClose {
         try {
             faultId = Integer.parseInt(theFaultId);
             myConnection = dataSource.getConnection();
-            String sql = "select * from student where id=?";
+            String sql = "select * from fault where fault_id=?";
             myPreparedStatement = myConnection.prepareStatement(sql);
             myPreparedStatement.setInt(1, faultId);
             myResultSet = myPreparedStatement.executeQuery();
             if (myResultSet.next()) {
                 String faultType = myResultSet.getString("fault_type");
-                Timestamp faultDate = Timestamp.valueOf(myResultSet.getString("fault_date"));
-                Timestamp faultFinish = Timestamp.valueOf(myResultSet.getString("fault_finish"));
+                Date faultDate = myResultSet.getDate("fault_date");
+                Date faultFinish = myResultSet.getDate("fault_finish");
                 int faultSectorId = Integer.parseInt(myResultSet.getString("fault_sector_id"));
                 int faultBrigadeId = Integer.parseInt(myResultSet.getString("fault_brigade_id"));
                 theFault = new Fault(faultId, faultType, faultDate, faultFinish, faultSectorId, faultBrigadeId);
@@ -136,8 +137,8 @@ public class FaultDbUtil implements ConnectionClose {
 
             myPreparedStatement = myConnection.prepareStatement(sql);
             myPreparedStatement.setString(1, theFault.getFaultType());
-            myPreparedStatement.setTimestamp(2, theFault.getFaultDate());
-            myPreparedStatement.setTimestamp(3, theFault.getFaultFinish());
+            myPreparedStatement.setString(2, theFault.getFaultDate());
+            myPreparedStatement.setString(3, theFault.getFaultFinish());
             myPreparedStatement.setInt(4, theFault.getFaultSectorId());
             myPreparedStatement.setInt(5, theFault.getFaultBrigadeId());
             myPreparedStatement.execute();

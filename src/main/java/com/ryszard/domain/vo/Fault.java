@@ -1,6 +1,8 @@
 package com.ryszard.domain.vo;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class Fault {
@@ -9,9 +11,9 @@ public class Fault {
 
     private String faultType;
 
-    private Timestamp faultDate;
+    private Date faultDate;
 
-    private Timestamp faultFinish;
+    private Date faultFinish;
 
     private int faultSectorId;
 
@@ -20,7 +22,7 @@ public class Fault {
     public Fault() {
     }
 
-    public Fault(int faultId, String type, Timestamp faultDate, Timestamp faultFinish, int faultSectorId, int faultBrigadeId) {
+    public Fault(int faultId, String faultType, Date faultDate, Date faultFinish, int faultSectorId, int faultBrigadeId) {
         this.faultId = faultId;
         this.faultType = faultType;
         this.faultDate = faultDate;
@@ -29,7 +31,7 @@ public class Fault {
         this.faultBrigadeId = faultBrigadeId;
     }
 
-    public Fault(String faultType, Timestamp faultDate, Timestamp faultFinish, int faultSectorId, int faultBrigadeId) {
+    public Fault(String faultType, Date faultDate, Date faultFinish, int faultSectorId, int faultBrigadeId) {
         this.faultType = faultType;
         this.faultDate = faultDate;
         this.faultFinish = faultFinish;
@@ -53,20 +55,42 @@ public class Fault {
         this.faultType = faultType;
     }
 
-    public Timestamp getFaultDate() {
-        return faultDate;
+    public String getFaultDate() {
+        String str = "";
+        if (this.faultDate != null) {
+            str = new SimpleDateFormat("yyyy-MM-dd").format(this.faultDate);
+        }
+        return str;
     }
 
-    public void setFaultDate(Timestamp faultDate) {
-        this.faultDate = faultDate;
+    public void setFaultDate(String faultDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(faultDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.faultDate = formatDate;
     }
 
-    public Timestamp getFaultFinish() {
-        return faultFinish;
+    public String getFaultFinish() {
+        String str = "";
+        if (this.faultFinish != null) {
+            str = new SimpleDateFormat("yyyy-MM-dd").format(this.faultFinish);
+        }
+        return str;
     }
 
-    public void setFaultFinish(Timestamp faultFinish) {
-        this.faultFinish = faultFinish;
+    public void setFaultFinish(String faultFinish) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date formatDate = null;
+        try {
+            formatDate = sdf.parse(faultFinish);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        this.faultFinish = formatDate;
     }
 
     public int getFaultSectorId() {
